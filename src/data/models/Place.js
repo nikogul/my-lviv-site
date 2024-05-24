@@ -1,8 +1,11 @@
+// File: src/data/models/Place.js
+
 const mongoose = require('mongoose');
 
 const placeSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
+  fullDescription: String, // Додати це поле
   tags: [String],
   rating: Number,
   location: { type: [Number], required: true },
@@ -14,8 +17,7 @@ const placeSchema = new mongoose.Schema({
     },
   ],
   imageUrl: String,
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } // Add user reference
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } // Додати посилання на користувача
 });
-
 
 module.exports = mongoose.model('Place', placeSchema);

@@ -1,9 +1,8 @@
 // src/pages/Place.js
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { placesData } from '../data/placesData';
+import axios from 'axios';
 import '../assets/css/Place.css';
 import 'leaflet/dist/leaflet.css';
 
@@ -16,17 +15,46 @@ const tagColors = {
 
 function Place() {
   const { id } = useParams();
-  const place = placesData.find(p => p.id === parseInt(id));
+  const [place, setPlace] = useState(null);
   const [newReview, setNewReview] = useState('');
   const [newRating, setNewRating] = useState(0);
+
+  useEffect(() => {
+    const fetchPlace = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/places/${id}`);
+        setPlace(response.data);
+      } catch (error) {
+        console.error('Failed to fetch place:', error);
+      }
+    };
+
+    fetchPlace();
+  }, [id]);
 
   if (!place) {
     return <div>Місце не знайдено</div>;
   }
 
-  const handleReviewSubmit = (event) => {
+  const handleReviewSubmit = async (event) => {
     event.preventDefault();
     // Обробка додавання нового відгуку
+    try {
+      const response = await axios.post('http://localhost:5000/api/reviews', {
+        placeId: place._id,
+        userId: "поточний_користувач_id", // замініть на реальне значення
+        comment: newReview,
+        rating: newRating,
+      });
+      setPlace({
+        ...place,
+        reviews: [...place.reviews, response.data]
+      });
+      setNewReview('');
+      setNewRating(0);
+    } catch (error) {
+      console.error('Failed to add review:', error);
+    }
   };
 
   return (

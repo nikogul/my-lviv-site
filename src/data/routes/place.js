@@ -1,3 +1,5 @@
+// File: src/data/routes/place.js
+
 const express = require('express');
 const Place = require('../models/Place');
 const router = express.Router();
@@ -9,6 +11,19 @@ router.get('/', async (req, res) => {
     res.status(200).json(places);
   } catch (error) {
     res.status(400).json({ error: 'Failed to fetch places' });
+  }
+});
+
+// Отримати окреме місце
+router.get('/:id', async (req, res) => {
+  try {
+    const place = await Place.findById(req.params.id);
+    if (!place) {
+      return res.status(404).json({ error: 'Place not found' });
+    }
+    res.status(200).json(place);
+  } catch (error) {
+    res.status(400).json({ error: 'Failed to fetch place' });
   }
 });
 

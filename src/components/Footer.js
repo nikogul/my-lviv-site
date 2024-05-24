@@ -11,8 +11,8 @@ function Footer() {
         <p>© 2024 Цікавинка. Всі права захищені.</p>
         <p>
           <Link to="/privacy-policy">Політика конфіденційності</Link> | 
-          <Link to="/terms-of-service">Умови користування</Link> | 
-          <Link to="/admin">Адмін панель</Link>
+          <Link to="/terms-of-service"> Умови користування</Link> | 
+          <Link to="/admin"> Для адміністрації</Link>
         </p>
       </div>
     </footer>
