@@ -90,21 +90,6 @@ function Profile() {
           )}
         </div>
       </div>
-      <div className="places-section">
-        <h2>Мої місця</h2>
-        <div className="places-container">
-          {myPlaces.length > 0 ? (
-            myPlaces.map((place) => (
-              <div key={place._id} className="place-card">
-                <h3>{place.name}</h3>
-                <p>{place.description}</p>
-              </div>
-            ))
-          ) : (
-            <p>Опублікованих місць немає</p>
-          )}
-        </div>
-      </div>
     </div>
   );
 }
