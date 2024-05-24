@@ -1,0 +1,119 @@
+/* src/assets/css/Places.css */
+
+.places {
+  padding: 20px;
+}
+
+.places-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.places-header h1 {
+  font-size: 2.5rem;
+  color: #2D4654;
+}
+
+.places-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.places-list {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.place-card-link {
+  text-decoration: none;
+  color: inherit;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.place-card {
+  display: flex;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.place-card:hover {
+  transform: scale(1.05);
+}
+
+.place-image {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px;
+}
+
+.place-info {
+  flex: 2;
+  padding: 20px;
+}
+
+.place-info h2 {
+  font-size: 1.5rem;
+  color: #2D4654;
+}
+
+.place-info p {
+  font-size: 1rem;
+  color: #757575;
+}
+
+.place-tags {
+  margin-top: 10px;
+}
+
+.place-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 10px;
+  color: white;
+  border-radius: 5px;
+}
+
+.place-rating {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #757575;
+}
+
+.places-filters {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.tag {
+  background-color: #B0809E;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  text-align: right;
+}
+
+.tag.active,
+.tag:hover {
+  background-color: #4E4D5C;
+}

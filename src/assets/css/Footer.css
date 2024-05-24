@@ -1,0 +1,19 @@
+/* src/assets/css/Footer.css */
+
+.footer {
+  background-color: #2D4654; /* Оновлено колір */
+  padding: 20px 0;
+  text-align: center;
+  color: white;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease; /* Додано плавний перехід кольору */
+}
+
+.footer:hover {
+  background-color: #243B4A; /* Оновлено колір при наведенні */
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}

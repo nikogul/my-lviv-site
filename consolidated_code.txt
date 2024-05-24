@@ -1,0 +1,1426 @@
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\App.css ###
+
+/* src/App.css */
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.scrollable-content {
+  flex: 1;
+}
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\App.js ###
+
+// src/App.js
+
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Places from './pages/Places';
+import Place from './pages/Place';
+import Auth from './pages/Auth';
+import Profile from './pages/Profile';
+import AdminPanel from './pages/AdminPanel';
+import './App.css';
+
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Navbar />
+        <div className="scrollable-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/places" element={<Places />} />
+            <Route path="/places/:id" element={<Place />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/admin" element={<AdminPanel />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\App.test.js ###
+
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+test('renders learn react link', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\index.css ###
+
+/* src/index.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.scrollable-content {
+  flex: 1;
+  overflow-y: auto; /* Дозволити прокрутку вмісту */
+}
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\index.js ###
+
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import './index.css';
+
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\logo.svg ###
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 841.9 595.3"><g fill="#61DAFB"><path d="M666.3 296.5c0-32.5-40.7-63.3-103.1-82.4 14.4-63.6 8-114.2-20.2-130.4-6.5-3.8-14.1-5.6-22.4-5.6v22.3c4.6 0 8.3.9 11.4 2.6 13.6 7.8 19.5 37.5 14.9 75.7-1.1 9.4-2.9 19.3-5.1 29.4-19.6-4.8-41-8.5-63.5-10.9-13.5-18.5-27.5-35.3-41.6-50 32.6-30.3 63.2-46.9 84-46.9V78c-27.5 0-63.5 19.6-99.9 53.6-36.4-33.8-72.4-53.2-99.9-53.2v22.3c20.7 0 51.4 16.5 84 46.6-14 14.7-28 31.4-41.3 49.9-22.6 2.4-44 6.1-63.6 11-2.3-10-4-19.7-5.2-29-4.7-38.2 1.1-67.9 14.6-75.8 3-1.8 6.9-2.6 11.5-2.6V78.5c-8.4 0-16 1.8-22.6 5.6-28.1 16.2-34.4 66.7-19.9 130.1-62.2 19.2-102.7 49.9-102.7 82.3 0 32.5 40.7 63.3 103.1 82.4-14.4 63.6-8 114.2 20.2 130.4 6.5 3.8 14.1 5.6 22.5 5.6 27.5 0 63.5-19.6 99.9-53.6 36.4 33.8 72.4 53.2 99.9 53.2 8.4 0 16-1.8 22.6-5.6 28.1-16.2 34.4-66.7 19.9-130.1 62-19.1 102.5-49.9 102.5-82.3zm-130.2-66.7c-3.7 12.9-8.3 26.2-13.5 39.5-4.1-8-8.4-16-13.1-24-4.6-8-9.5-15.8-14.4-23.4 14.2 2.1 27.9 4.7 41 7.9zm-45.8 106.5c-7.8 13.5-15.8 26.3-24.1 38.2-14.9 1.3-30 2-45.2 2-15.1 0-30.2-.7-45-1.9-8.3-11.9-16.4-24.6-24.2-38-7.6-13.1-14.5-26.4-20.8-39.8 6.2-13.4 13.2-26.8 20.7-39.9 7.8-13.5 15.8-26.3 24.1-38.2 14.9-1.3 30-2 45.2-2 15.1 0 30.2.7 45 1.9 8.3 11.9 16.4 24.6 24.2 38 7.6 13.1 14.5 26.4 20.8 39.8-6.3 13.4-13.2 26.8-20.7 39.9zm32.3-13c5.4 13.4 10 26.8 13.8 39.8-13.1 3.2-26.9 5.9-41.2 8 4.9-7.7 9.8-15.6 14.4-23.7 4.6-8 8.9-16.1 13-24.1zM421.2 430c-9.3-9.6-18.6-20.3-27.8-32 9 .4 18.2.7 27.5.7 9.4 0 18.7-.2 27.8-.7-9 11.7-18.3 22.4-27.5 32zm-74.4-58.9c-14.2-2.1-27.9-4.7-41-7.9 3.7-12.9 8.3-26.2 13.5-39.5 4.1 8 8.4 16 13.1 24 4.7 8 9.5 15.8 14.4 23.4zM420.7 163c9.3 9.6 18.6 20.3 27.8 32-9-.4-18.2-.7-27.5-.7-9.4 0-18.7.2-27.8.7 9-11.7 18.3-22.4 27.5-32zm-74 58.9c-4.9 7.7-9.8 15.6-14.4 23.7-4.6 8-8.9 16-13 24-5.4-13.4-10-26.8-13.8-39.8 13.1-3.1 26.9-5.8 41.2-7.9zm-90.5 125.2c-35.4-15.1-58.3-34.9-58.3-50.6 0-15.7 22.9-35.6 58.3-50.6 8.6-3.7 18-7 27.7-10.1 5.7 19.6 13.2 40 22.5 60.9-9.2 20.8-16.6 41.1-22.2 60.6-9.9-3.1-19.3-6.5-28-10.2zM310 490c-13.6-7.8-19.5-37.5-14.9-75.7 1.1-9.4 2.9-19.3 5.1-29.4 19.6 4.8 41 8.5 63.5 10.9 13.5 18.5 27.5 35.3 41.6 50-32.6 30.3-63.2 46.9-84 46.9-4.5-.1-8.3-1-11.3-2.7zm237.2-76.2c4.7 38.2-1.1 67.9-14.6 75.8-3 1.8-6.9 2.6-11.5 2.6-20.7 0-51.4-16.5-84-46.6 14-14.7 28-31.4 41.3-49.9 22.6-2.4 44-6.1 63.6-11 2.3 10.1 4.1 19.8 5.2 29.1zm38.5-66.7c-8.6 3.7-18 7-27.7 10.1-5.7-19.6-13.2-40-22.5-60.9 9.2-20.8 16.6-41.1 22.2-60.6 9.9 3.1 19.3 6.5 28.1 10.2 35.4 15.1 58.3 34.9 58.3 50.6-.1 15.7-23 35.6-58.4 50.6zM320.8 78.4z"/><circle cx="420.9" cy="296.5" r="45.7"/><path d="M520.5 78.1z"/></g></svg>
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\reportWebVitals.js ###
+
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\setupTests.js ###
+
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom';
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\assets\css\AdminPanel.css ###
+
+/* src/assets/css/AdminPanel.css */
+
+.admin-panel {
+    padding: 20px;
+  }
+  
+  .admin-panel h1 {
+    font-size: 2rem;
+    color: #2D4654;
+  }
+  
+  .admin-panel p {
+    font-size: 1.2rem;
+    color: #757575;
+  }
+  
+  .requests-list {
+    margin-top: 20px;
+  }
+  
+  .requests-list h2 {
+    font-size: 1.5rem;
+    color: #2D4654;
+  }
+  
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\assets\css\Auth.css ###
+
+/* src/assets/css/Auth.css */
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .auth h1 {
+    font-size: 2rem;
+    color: #2D4654;
+  }
+  
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-top: 20px;
+  }
+  
+  .auth-form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .auth-form button {
+    background-color: #B0809E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+  }
+  
+  .auth-form button:hover {
+    background-color: #4E4D5C;
+  }
+
+  /* src/assets/css/Auth.css */
+
+  .toggle-button {
+    background-color: #B0809E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  .toggle-button:hover {
+    background-color: #4E4D5C;
+  }
+
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+
+  
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\assets\css\Footer.css ###
+
+/* src/assets/css/Footer.css */
+
+.footer {
+  background-color: #2D4654; /* Оновлено колір */
+  padding: 20px 0;
+  text-align: center;
+  color: white;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease; /* Додано плавний перехід кольору */
+}
+
+.footer:hover {
+  background-color: #243B4A; /* Оновлено колір при наведенні */
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\assets\css\Home.css ###
+
+/* src/assets/css/Home.css */
+
+.home {
+  padding: 20px;
+  text-align: center;
+}
+
+.home-header {
+  margin-bottom: 40px;
+}
+
+.home-header h1 {
+  font-size: 3rem;
+  color: #2D4654; /* Колір заголовка */
+}
+
+.home-header p {
+  font-size: 1.5rem;
+  color: #757575; /* Колір підзаголовка */
+}
+
+.intro {
+  margin: 20px 0;
+}
+
+.intro p {
+  font-size: 1.2rem;
+  color: #757575; /* Колір тексту */
+}
+
+.explore-button {
+  background-color: #B0809E; /* Колір кнопки */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.explore-button:hover {
+  background-color: #4E4D5C; /* Колір кнопки при наведенні */
+}
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\assets\css\Navbar.css ###
+
+/* src/assets/css/Navbar.css */
+
+.navbar {
+  background-color: #87BCDE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+}
+
+.navbar:hover,
+.navbar.active {
+  background-color: #96BBD1;
+  height: 150px;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  justify-content: center;
+  height: 100%;
+}
+
+.navbar-logo {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.navbar:hover .navbar-logo,
+.navbar.active .navbar-logo {
+  animation: none;
+  position: static;
+  transform: translateY(0);
+  margin-bottom: 10px;
+  animation: bounce 0.6s ease-out forwards;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.2);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+}
+
+.navbar-logo:hover {
+  color: #4E4D5C;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 500px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  margin-top: 10px;
+}
+
+.navbar:hover .search-container,
+.navbar.active .search-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  flex: 1;
+  font-size: 14px;
+  border-radius: 20px;
+}
+
+.search-button {
+  background-color: #B0809E;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.search-button .search-icon {
+  font-size: 16px;
+}
+
+.search-button:hover {
+  background-color: #4E4D5C;
+}
+
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\assets\css\Place.css ###
+
+/* src/assets/css/Place.css */
+
+.place {
+    padding: 20px;
+  }
+  
+  .place-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .place-image {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+  }
+  
+  .place-image-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #87BCDE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+  }
+  
+  .place-header h1 {
+    font-size: 2.5rem;
+    color: #2D4654;
+    margin-top: 20px;
+  }
+  
+  .place-summary {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .place-summary p {
+    font-size: 1.2rem;
+    color: #757575;
+  }
+  
+  .place-tags {
+    margin-top: 10px;
+  }
+  
+  .place-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 10px;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .place-rating {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #757575;
+  }
+  
+  .place-details {
+    margin-bottom: 40px;
+  }
+  
+  .place-details h2 {
+    font-size: 1.5rem;
+    color: #2D4654;
+    margin-bottom: 20px;
+  }
+  
+  .place-reviews {
+    margin-bottom: 40px;
+  }
+  
+  .place-reviews h2 {
+    font-size: 1.5rem;
+    color: #2D4654;
+    margin-bottom: 20px;
+  }
+  
+  .review-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .review-form textarea {
+    resize: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .review-form select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .review-form button {
+    background-color: #B0809E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+  }
+  
+  .review-form button:hover {
+    background-color: #4E4D5C;
+  }
+  
+  .review {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .review p {
+    font-size: 1rem;
+    color: #757575;
+  }
+  
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\assets\css\Places.css ###
+
+/* src/assets/css/Places.css */
+
+.places {
+  padding: 20px;
+}
+
+.places-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.places-header h1 {
+  font-size: 2.5rem;
+  color: #2D4654;
+}
+
+.places-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.places-list {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.place-card-link {
+  text-decoration: none;
+  color: inherit;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.place-card {
+  display: flex;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.place-card:hover {
+  transform: scale(1.05);
+}
+
+.place-image {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px;
+}
+
+.place-info {
+  flex: 2;
+  padding: 20px;
+}
+
+.place-info h2 {
+  font-size: 1.5rem;
+  color: #2D4654;
+}
+
+.place-info p {
+  font-size: 1rem;
+  color: #757575;
+}
+
+.place-tags {
+  margin-top: 10px;
+}
+
+.place-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 10px;
+  color: white;
+  border-radius: 5px;
+}
+
+.place-rating {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #757575;
+}
+
+.places-filters {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.tag {
+  background-color: #B0809E;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  text-align: right;
+}
+
+.tag.active,
+.tag:hover {
+  background-color: #4E4D5C;
+}
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\assets\css\Profile.css ###
+
+/* src/assets/css/Profile.css */
+
+.profile {
+    padding: 20px;
+  }
+  
+  .profile h1 {
+    font-size: 2rem;
+    color: #2D4654;
+  }
+  
+  .profile p {
+    font-size: 1.2rem;
+    color: #757575;
+  }
+  
+  .profile-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  
+  .profile-form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .profile-form button {
+    background-color: #B0809E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+  }
+  
+  .profile-form button:hover {
+    background-color: #4E4D5C;
+  }
+  
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\components\Footer.js ###
+
+// src/components/Footer.js
+
+import React from 'react';
+import '../assets/css/Footer.css';
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        <p>© 2024 Цікавинка. Всі права захищені.</p>
+      </div>
+    </footer>
+  );
+}
+
+export default Footer;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\components\Navbar.js ###
+
+// src/components/Navbar.js
+
+import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import '../assets/css/Navbar.css';
+
+function Navbar() {
+  const [isActive, setIsActive] = useState(false);
+  const searchInputRef = useRef(null);
+
+  const handleFocus = () => {
+    setIsActive(true);
+  };
+
+  const handleBlur = (event) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      setIsActive(false);
+    }
+  };
+
+  return (
+    <nav className={`navbar ${isActive ? 'active' : ''}`} onBlur={handleBlur}>
+      <div className="navbar-container">
+        <Link to="/" className="navbar-logo">
+          Цікавинка
+        </Link>
+        <div className="search-container">
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Пошук..."
+            onFocus={handleFocus}
+            ref={searchInputRef}
+          />
+          <button className="search-button">
+            <span className="search-icon">🔍</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+export default Navbar;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\data\config.js ###
+
+// src/data/config.js
+
+const mongoose = require('mongoose');
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect('mongodb://localhost:27017/my-lviv-site');
+    console.log('MongoDB connected...');
+  } catch (err) {
+    console.error('Failed to connect to MongoDB:', err.message);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\data\placesData.js ###
+
+// src/data/placesData.js
+
+export const placesData = [
+    {
+      id: 1,
+      name: 'Кав\'ярня Лева',
+      description: 'Затишна кав\'ярня у центрі Львова.',
+      tags: ['кафе'],
+      rating: 9,
+      location: [49.8397, 24.0297],
+      reviews: [
+        { user: 'Олена', comment: 'Дуже сподобалось!', rating: 9 },
+        { user: 'Іван', comment: 'Смачна кава, рекомендую.', rating: 10 }
+      ],
+      imageUrl: '' // Зображення відсутнє
+    },
+    {
+      id: 2,
+      name: 'Ресторан Бачевських',
+      description: 'Розкішний ресторан з українською кухнею.',
+      tags: ['ресторан'],
+      rating: 10,
+      location: [49.8413, 24.0321],
+      reviews: [
+        { user: 'Марія', comment: 'Чудове місце для святкування.', rating: 10 },
+        { user: 'Петро', comment: 'Смачні страви і гарна атмосфера.', rating: 9 }
+      ],
+      imageUrl: '' // Додайте шлях до зображення
+    }
+  ];
+  
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\data\server.js ###
+
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors'); // Додайте цей рядок
+const connectDB = require('./config');
+const userRoutes = require('./routes/user');
+const placeRoutes = require('./routes/place');
+const reviewRoutes = require('./routes/review');
+
+const app = express();
+const port = 5000;
+
+connectDB();
+
+app.use(bodyParser.json());
+app.use(cors()); // Додайте цей рядок
+
+app.use('/api/users', userRoutes);
+app.use('/api/places', placeRoutes);
+app.use('/api/reviews', reviewRoutes);
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\data\models\Place.js ###
+
+const mongoose = require('mongoose');
+
+const placeSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  description: { type: String, required: true },
+  tags: [String],
+  rating: Number,
+  location: { type: [Number], required: true }, // [latitude, longitude]
+  reviews: [
+    {
+      user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      comment: String,
+      rating: Number,
+    },
+  ],
+  imageUrl: String,
+});
+
+module.exports = mongoose.model('Place', placeSchema);
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\data\models\Review.js ###
+
+const mongoose = require('mongoose');
+
+const reviewSchema = new mongoose.Schema({
+  place: { type: mongoose.Schema.Types.ObjectId, ref: 'Place' },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  comment: { type: String, required: true },
+  rating: { type: Number, required: true },
+});
+
+module.exports = mongoose.model('Review', reviewSchema);
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\data\models\User.js ###
+
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+
+const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  displayName: { type: String, required: true },
+  savedPlaces: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Place' }],
+});
+
+// Додайте цю функцію перед експортом моделі
+userSchema.methods.matchPassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
+module.exports = mongoose.model('User', userSchema);
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\data\routes\place.js ###
+
+const express = require('express');
+const Place = require('../models/Place');
+const router = express.Router();
+
+// Отримати всі місця
+router.get('/', async (req, res) => {
+  try {
+    const places = await Place.find();
+    res.status(200).json(places);
+  } catch (error) {
+    res.status(400).json({ error: 'Failed to fetch places' });
+  }
+});
+
+// Додати нове місце
+router.post('/', async (req, res) => {
+  const { name, description, tags, location, imageUrl } = req.body;
+  try {
+    const newPlace = new Place({ name, description, tags, location, imageUrl });
+    await newPlace.save();
+    res.status(201).json(newPlace);
+  } catch (error) {
+    res.status(400).json({ error: 'Failed to add place' });
+  }
+});
+
+module.exports = router;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\data\routes\review.js ###
+
+const express = require('express');
+const Review = require('../models/Review');
+const Place = require('../models/Place');
+const router = express.Router();
+
+// Додати новий відгук
+router.post('/', async (req, res) => {
+  const { placeId, userId, comment, rating } = req.body;
+  try {
+    const newReview = new Review({ place: placeId, user: userId, comment, rating });
+    await newReview.save();
+    await Place.findByIdAndUpdate(placeId, { $push: { reviews: newReview._id } });
+    res.status(201).json(newReview);
+  } catch (error) {
+    res.status(400).json({ error: 'Failed to add review' });
+  }
+});
+
+module.exports = router;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\data\routes\user.js ###
+
+const express = require('express');
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
+const router = express.Router();
+
+// Реєстрація користувача
+router.post('/register', async (req, res) => {
+  const { username, password, displayName } = req.body;
+  try {
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ error: 'Цей псевдонім вже зайнятий' });
+    }
+
+    // Хешуйте пароль перед збереженням
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new User({ username, password: hashedPassword, displayName });
+    await newUser.save();
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(400).json({ error: 'Не вдалося зареєструвати користувача' });
+  }
+});
+
+// Логін користувача
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(401).json({ error: 'Невірні дані для входу' });
+    }
+    const isMatch = await user.matchPassword(password);
+    if (!isMatch) {
+      return res.status(401).json({ error: 'Невірні дані для входу' });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error during user login:', error.message);
+    res.status(400).json({ error: 'Не вдалося увійти', details: error.message });
+  }
+});
+
+module.exports = router;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\pages\AdminPanel.js ###
+
+// src/pages/AdminPanel.js
+
+import React from 'react';
+import '../assets/css/AdminPanel.css';
+
+function AdminPanel() {
+  return (
+    <div className="admin-panel">
+      <h1>Адмін-панель</h1>
+      <p>Тут ви можете керувати сайтом, опрацьовувати заявки на публікацію тощо.</p>
+      <div className="requests-list">
+        <h2>Заявки на публікацію</h2>
+        {/* Тут будуть відображатися заявки на публікацію */}
+      </div>
+    </div>
+  );
+}
+
+export default AdminPanel;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\pages\Auth.js ###
+
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import '../assets/css/Auth.css';
+
+function Auth() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [displayName, setDisplayName] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const toggleMode = () => {
+    setIsLogin(!isLogin);
+    setError('');
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log('Form submitted:', { isLogin, username, password, displayName });
+    if (isLogin) {
+      // Логін
+      try {
+        const response = await axios.post('http://localhost:5000/api/users/login', { username, password });
+        console.log('Login response:', response.data);
+        navigate('/profile'); // Перенаправлення на сторінку профілю
+      } catch (error) {
+        console.error('Login error:', error.response ? error.response.data : error.message);
+        setError('Невірні дані для входу');
+      }
+    } else {
+      // Реєстрація
+      try {
+        const response = await axios.post('http://localhost:5000/api/users/register', { username, password, displayName });
+        console.log('Registration response:', response.data);
+        navigate('/profile'); // Перенаправлення на сторінку профілю
+      } catch (error) {
+        console.error('Registration error:', error.response ? error.response.data : error.message);
+        if (error.response && error.response.status === 400) {
+          setError(error.response.data.error || 'Не вдалося зареєструвати користувача');
+        } else {
+          setError('Не вдалося зареєструвати користувача');
+        }
+      }
+    }
+  };
+
+  return (
+    <div className="auth">
+      <h1>{isLogin ? 'Вхід' : 'Реєстрація'}</h1>
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Логін"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Пароль"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        {!isLogin && (
+          <input
+            type="text"
+            placeholder="Відображуване ім'я"
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
+            required
+          />
+        )}
+        <button type="submit">{isLogin ? 'Увійти' : 'Зареєструватися'}</button>
+      </form>
+      {error && <p className="error-message">{error}</p>}
+      <button className="toggle-button" onClick={toggleMode}>
+        {isLogin ? 'Зареєструйтесь' : 'Увійти'}
+      </button>
+    </div>
+  );
+}
+
+export default Auth;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\pages\Home.js ###
+
+// src/pages/Home.js
+
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../assets/css/Home.css';
+
+function Home() {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/places'); // Переход до сторінки зі списком місць
+  };
+
+  return (
+    <div className="home">
+      <header className="home-header">
+        <h1>Цікавинка</h1>
+        <p>Досліджуйте найкращі місця у місті Лева!</p>
+      </header>
+      <section className="intro">
+        <p>Наш сайт допоможе вам знайти цікаві, корисні та видатні місця у Львові. Натисніть кнопку нижче, щоб розпочати свою подорож.</p>
+        <button className="explore-button" onClick={handleButtonClick}>
+          Переглянути місця
+        </button>
+      </section>
+    </div>
+  );
+}
+
+export default Home;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\pages\Place.js ###
+
+// src/pages/Place.js
+
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { placesData } from '../data/placesData';
+import '../assets/css/Place.css';
+import 'leaflet/dist/leaflet.css';
+
+const tagColors = {
+  кафе: '#FFCDD2',
+  ресторан: '#C8E6C9',
+  клуб: '#BBDEFB',
+  'видатне місце': '#FFF9C4'
+};
+
+function Place() {
+  const { id } = useParams();
+  const place = placesData.find(p => p.id === parseInt(id));
+  const [newReview, setNewReview] = useState('');
+  const [newRating, setNewRating] = useState(0);
+
+  if (!place) {
+    return <div>Місце не знайдено</div>;
+  }
+
+  const handleReviewSubmit = (event) => {
+    event.preventDefault();
+    // Обробка додавання нового відгуку
+  };
+
+  return (
+    <div className="place">
+      <header className="place-header">
+        {place.imageUrl ? (
+          <img src={place.imageUrl} alt={place.name} className="place-image" />
+        ) : (
+          <div className="place-image-placeholder">
+            <p>Фото відсутнє</p>
+          </div>
+        )}
+        <h1>{place.name}</h1>
+      </header>
+      <section className="place-summary">
+        <p>{place.description}</p>
+        <div className="place-tags">
+          {place.tags.map((tag, index) => (
+            <span key={index} className="place-tag" style={{ backgroundColor: tagColors[tag] }}>{tag}</span>
+          ))}
+        </div>
+        <div className="place-rating">
+          Рейтинг: {place.rating} ⭐
+        </div>
+      </section>
+      <section className="place-details">
+        <h2>Повний опис</h2>
+        <p>{place.fullDescription || 'Немає детальної інформації'}</p>
+      </section>
+      <section className="place-map">
+        <h2>Розташування</h2>
+        <MapContainer center={place.location} zoom={13} scrollWheelZoom={false} style={{ height: '300px', width: '100%' }}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          />
+          <Marker position={place.location}>
+            <Popup>
+              {place.name}
+            </Popup>
+          </Marker>
+        </MapContainer>
+      </section>
+      <section className="place-reviews">
+        <h2>Відгуки</h2>
+        <form onSubmit={handleReviewSubmit} className="review-form">
+          <textarea 
+            value={newReview} 
+            onChange={(e) => setNewReview(e.target.value)} 
+            placeholder="Напишіть свій відгук" 
+            required
+          />
+          <select value={newRating} onChange={(e) => setNewRating(e.target.value)} required>
+            <option value="0" disabled>Оберіть рейтинг</option>
+            {[...Array(10).keys()].map(num => (
+              <option key={num+1} value={num+1}>{num+1}</option>
+            ))}
+          </select>
+          <button type="submit">Додати відгук</button>
+        </form>
+        {place.reviews.map((review, index) => (
+          <div key={index} className="review">
+            <p><strong>{review.user}:</strong> {review.comment} - {review.rating} ⭐</p>
+          </div>
+        ))}
+      </section>
+    </div>
+  );
+}
+
+export default Place;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\pages\Places.js ###
+
+// src/pages/Places.js
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import '../assets/css/Places.css';
+
+const tags = ['всі', 'кафе', 'ресторан', 'клуб', 'видатне місце'];
+
+const tagColors = {
+  кафе: '#FFCDD2',
+  ресторан: '#C8E6C9',
+  клуб: '#BBDEFB',
+  'видатне місце': '#FFF9C4'
+};
+
+function Places() {
+  const [selectedTag, setSelectedTag] = useState('всі');
+  const [places, setPlaces] = useState([]);
+
+  useEffect(() => {
+    const fetchPlaces = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/places');
+        setPlaces(response.data);
+      } catch (error) {
+        console.error('Failed to fetch places:', error);
+      }
+    };
+
+    fetchPlaces();
+  }, []);
+
+  const handleTagClick = (tag) => {
+    setSelectedTag(tag);
+  };
+
+  const filteredPlaces = selectedTag === 'всі' 
+    ? places 
+    : places.filter(place => place.tags.includes(selectedTag));
+
+  return (
+    <div className="places">
+      <div className="places-header">
+        <h1>Цікаві місця у Львові</h1>
+      </div>
+      <div className="places-content">
+        <section className="places-list">
+          {filteredPlaces.map(place => (
+            <Link to={`/places/${place._id}`} key={place._id} className="place-card-link">
+              <div className="place-card">
+                <div className="place-image" style={{ backgroundImage: place.imageUrl ? `url(${place.imageUrl})` : 'none', backgroundColor: place.imageUrl ? 'transparent' : '#87BCDE' }}>
+                  {!place.imageUrl && <p>Фото відсутнє</p>}
+                </div>
+                <div className="place-info">
+                  <h2>{place.name}</h2>
+                  <p>{place.description}</p>
+                  <div className="place-tags">
+                    {place.tags.map((tag, index) => (
+                      <span key={index} className="place-tag" style={{ backgroundColor: tagColors[tag] }}>{tag}</span>
+                    ))}
+                  </div>
+                  <div className="place-rating">
+                    Рейтинг: {place.rating} ⭐
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </section>
+        <aside className="places-filters">
+          {tags.map((tag, index) => (
+            <button 
+              key={index} 
+              className={`tag ${selectedTag === tag ? 'active' : ''}`} 
+              onClick={() => handleTagClick(tag)}
+            >
+              {tag}
+            </button>
+          ))}
+        </aside>
+      </div>
+    </div>
+  );
+}
+
+export default Places;
+
+
+### File: D:\Andrii\Desktop\my-lviv-site\src\pages\Profile.js ###
+
+// src/pages/Profile.js
+
+import React from 'react';
+import '../assets/css/Profile.css';
+
+function Profile() {
+  return (
+    <div className="profile">
+      <h1>Мій профіль</h1>
+      <p>Тут ви можете переглянути ваші опубліковані місця, збережені місця та інші дані.</p>
+      <form className="profile-form">
+        <input type="text" placeholder="Нове відображуване ім'я" />
+        <button type="submit">Змінити ім'я</button>
+      </form>
+      <div className="places-list">
+        <h2>Мої місця</h2>
+        {/* Тут будуть відображатися місця користувача */}
+      </div>
+    </div>
+  );
+}
+
+export default Profile;

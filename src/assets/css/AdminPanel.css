@@ -1,0 +1,25 @@
+/* src/assets/css/AdminPanel.css */
+
+.admin-panel {
+    padding: 20px;
+  }
+  
+  .admin-panel h1 {
+    font-size: 2rem;
+    color: #2D4654;
+  }
+  
+  .admin-panel p {
+    font-size: 1.2rem;
+    color: #757575;
+  }
+  
+  .requests-list {
+    margin-top: 20px;
+  }
+  
+  .requests-list h2 {
+    font-size: 1.5rem;
+    color: #2D4654;
+  }
+  
