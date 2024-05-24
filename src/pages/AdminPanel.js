@@ -39,7 +39,7 @@ function AdminPanel() {
   return (
     <div className="admin-panel">
       <h1>Адмін-панель</h1>
-      <p>Тут ви можете керувати сайтом, опрацьовувати заявки на публікацію тощо.</p>
+      <p>Тут ви можете керувати сайтом, опрацьовувати нові місця.</p>
       <div className="add-place-form">
         <h2>Додати нове місце</h2>
         <form onSubmit={handleSubmit}>

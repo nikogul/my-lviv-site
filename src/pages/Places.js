@@ -44,6 +44,18 @@ function Places() {
         <h1>Цікаві місця у Львові</h1>
       </div>
       <div className="places-content">
+        <aside className="places-filters">
+          <h3>Фільтри пошуку</h3>
+          {tags.map((tag, index) => (
+            <button 
+              key={index} 
+              className={`tag ${selectedTag === tag ? 'active' : ''}`} 
+              onClick={() => handleTagClick(tag)}
+            >
+              {tag}
+            </button>
+          ))}
+        </aside>
         <section className="places-list">
           {filteredPlaces.map(place => (
             <Link to={`/places/${place._id}`} key={place._id} className="place-card-link">
@@ -67,17 +79,6 @@ function Places() {
             </Link>
           ))}
         </section>
-        <aside className="places-filters">
-          {tags.map((tag, index) => (
-            <button 
-              key={index} 
-              className={`tag ${selectedTag === tag ? 'active' : ''}`} 
-              onClick={() => handleTagClick(tag)}
-            >
-              {tag}
-            </button>
-          ))}
-        </aside>
       </div>
     </div>
   );
