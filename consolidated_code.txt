@@ -899,6 +899,30 @@ app.listen(port, () => {
 });
 
 
+### File: D:\Andrii\Desktop\my-lviv-site\src\data\middleware\authMiddleware.js ###
+
+const jwt = require('jsonwebtoken');
+
+const authMiddleware = (req, res, next) => {
+  // Отримати токен з заголовків запиту
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ error: 'Необхідно авторизуватися' });
+  }
+
+  try {
+    // Перевірити і розшифрувати токен
+    const decoded = jwt.verify(token, 'your_jwt_secret');
+    req.user = decoded; // Зберегти інформацію про користувача в запиті
+    next(); // Передати управління наступному middleware або роуту
+  } catch (error) {
+    res.status(401).json({ error: 'Неправильний або прострочений токен' });
+  }
+};
+
+module.exports = authMiddleware;
+
+
 ### File: D:\Andrii\Desktop\my-lviv-site\src\data\models\Place.js ###
 
 const mongoose = require('mongoose');
@@ -1015,6 +1039,8 @@ const express = require('express');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const authMiddleware = require('../middleware/authMiddleware'); // Імпорт middleware
 
 // Реєстрація користувача
 router.post('/register', async (req, res) => {
@@ -1048,10 +1074,20 @@ router.post('/login', async (req, res) => {
     if (!isMatch) {
       return res.status(401).json({ error: 'Невірні дані для входу' });
     }
-    res.status(200).json(user);
+    const token = jwt.sign({ userId: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
+    res.status(200).json({ token, user });
   } catch (error) {
     console.error('Error during user login:', error.message);
     res.status(400).json({ error: 'Не вдалося увійти', details: error.message });
+  }
+});
+
+router.get('/profile', authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.userId);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ error: 'Не вдалося отримати профіль' });
   }
 });
 
@@ -1103,25 +1139,22 @@ function Auth() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Form submitted:', { isLogin, username, password, displayName });
     if (isLogin) {
       // Логін
       try {
         const response = await axios.post('http://localhost:5000/api/users/login', { username, password });
-        console.log('Login response:', response.data);
-        navigate('/profile'); // Перенаправлення на сторінку профілю
+        localStorage.setItem('token', response.data.token);
+        navigate('/profile');
       } catch (error) {
-        console.error('Login error:', error.response ? error.response.data : error.message);
         setError('Невірні дані для входу');
       }
     } else {
       // Реєстрація
       try {
         const response = await axios.post('http://localhost:5000/api/users/register', { username, password, displayName });
-        console.log('Registration response:', response.data);
-        navigate('/profile'); // Перенаправлення на сторінку профілю
+        localStorage.setItem('token', response.data.token);
+        navigate('/profile');
       } catch (error) {
-        console.error('Registration error:', error.response ? error.response.data : error.message);
         if (error.response && error.response.status === 400) {
           setError(error.response.data.error || 'Не вдалося зареєструвати користувача');
         } else {
@@ -1401,24 +1434,41 @@ export default Places;
 
 ### File: D:\Andrii\Desktop\my-lviv-site\src\pages\Profile.js ###
 
-// src/pages/Profile.js
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../assets/css/Profile.css';
 
 function Profile() {
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const response = await axios.get('http://localhost:5000/api/users/profile', {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          setProfile(response.data);
+        } catch (error) {
+          console.error('Failed to fetch profile:', error);
+        }
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  if (!profile) {
+    return <div>Завантаження...</div>;
+  }
+
   return (
     <div className="profile">
       <h1>Мій профіль</h1>
-      <p>Тут ви можете переглянути ваші опубліковані місця, збережені місця та інші дані.</p>
-      <form className="profile-form">
-        <input type="text" placeholder="Нове відображуване ім'я" />
-        <button type="submit">Змінити ім'я</button>
-      </form>
-      <div className="places-list">
-        <h2>Мої місця</h2>
-        {/* Тут будуть відображатися місця користувача */}
-      </div>
+      <p>Логін: {profile.username}</p>
+      <p>Відображуване ім'я: {profile.displayName}</p>
+      {/* Тут можна додати інші елементи профілю */}
     </div>
   );
 }

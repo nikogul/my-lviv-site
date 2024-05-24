@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../assets/css/Auth.css';
@@ -11,6 +11,13 @@ function Auth() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/profile');
+    }
+  }, [navigate]);
+
   const toggleMode = () => {
     setIsLogin(!isLogin);
     setError('');
@@ -19,7 +26,6 @@ function Auth() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (isLogin) {
-      // Логін
       try {
         const response = await axios.post('http://localhost:5000/api/users/login', { username, password });
         localStorage.setItem('token', response.data.token);
@@ -28,7 +34,6 @@ function Auth() {
         setError('Невірні дані для входу');
       }
     } else {
-      // Реєстрація
       try {
         const response = await axios.post('http://localhost:5000/api/users/register', { username, password, displayName });
         localStorage.setItem('token', response.data.token);

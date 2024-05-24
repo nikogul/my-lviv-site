@@ -4,6 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
+/extract_code.py
+/consolidated_code.txt
 
 # testing
 /coverage

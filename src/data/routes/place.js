@@ -24,4 +24,24 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.post('/saved', async (req, res) => {
+  const { placeIds } = req.body;
+  try {
+    const places = await Place.find({ _id: { $in: placeIds } });
+    res.status(200).json(places);
+  } catch (error) {
+    res.status(400).json({ error: 'Failed to fetch saved places' });
+  }
+});
+
+router.get('/user/:userId', async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const places = await Place.find({ user: userId });
+    res.status(200).json(places);
+  } catch (error) {
+    res.status(400).json({ error: 'Failed to fetch user places' });
+  }
+});
+
 module.exports = router;

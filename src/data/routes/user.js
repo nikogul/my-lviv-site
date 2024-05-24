@@ -47,7 +47,7 @@ router.post('/login', async (req, res) => {
 
 router.get('/profile', authMiddleware, async (req, res) => {
   try {
-    const user = await User.findById(req.user.userId);
+    const user = await User.findById(req.user.userId).populate('savedPlaces');
     res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ error: 'Не вдалося отримати профіль' });

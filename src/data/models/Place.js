@@ -5,7 +5,7 @@ const placeSchema = new mongoose.Schema({
   description: { type: String, required: true },
   tags: [String],
   rating: Number,
-  location: { type: [Number], required: true }, // [latitude, longitude]
+  location: { type: [Number], required: true },
   reviews: [
     {
       user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
@@ -14,6 +14,8 @@ const placeSchema = new mongoose.Schema({
     },
   ],
   imageUrl: String,
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } // Add user reference
 });
+
 
 module.exports = mongoose.model('Place', placeSchema);
