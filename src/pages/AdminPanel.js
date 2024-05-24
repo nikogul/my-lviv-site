@@ -6,8 +6,9 @@ import '../assets/css/AdminPanel.css';
 
 function AdminPanel() {
   const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [tags, setTags] = useState([]);
+  const [shortDescription, setShortDescription] = useState('');
+  const [fullDescription, setFullDescription] = useState('');
+  const [tags, setTags] = useState('');
   const [location, setLocation] = useState('');
   const [imageUrl, setImageUrl] = useState('');
 
@@ -16,7 +17,8 @@ function AdminPanel() {
     try {
       const response = await axios.post('http://localhost:5000/api/places', {
         name,
-        description,
+        description: shortDescription,
+        fullDescription,
         tags: tags.split(',').map(tag => tag.trim()),
         location: location.split(',').map(coord => parseFloat(coord.trim())),
         imageUrl,
@@ -24,7 +26,8 @@ function AdminPanel() {
       console.log('Place added:', response.data);
       // Clear the form
       setName('');
-      setDescription('');
+      setShortDescription('');
+      setFullDescription('');
       setTags('');
       setLocation('');
       setImageUrl('');
@@ -37,14 +40,10 @@ function AdminPanel() {
     <div className="admin-panel">
       <h1>Адмін-панель</h1>
       <p>Тут ви можете керувати сайтом, опрацьовувати заявки на публікацію тощо.</p>
-      <div className="requests-list">
-        <h2>Заявки на публікацію</h2>
-        {/* Тут будуть відображатися заявки на публікацію */}
-      </div>
       <div className="add-place-form">
         <h2>Додати нове місце</h2>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="form-group">
             <label>Назва:</label>
             <input
               type="text"
@@ -53,15 +52,23 @@ function AdminPanel() {
               required
             />
           </div>
-          <div>
-            <label>Опис:</label>
+          <div className="form-group">
+            <label>Короткий опис:</label>
             <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={shortDescription}
+              onChange={(e) => setShortDescription(e.target.value)}
               required
             />
           </div>
-          <div>
+          <div className="form-group">
+            <label>Повний опис:</label>
+            <textarea
+              value={fullDescription}
+              onChange={(e) => setFullDescription(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
             <label>Теги (через кому):</label>
             <input
               type="text"
@@ -70,7 +77,7 @@ function AdminPanel() {
               required
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>Координати (через кому):</label>
             <input
               type="text"
@@ -79,7 +86,7 @@ function AdminPanel() {
               required
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>URL зображення:</label>
             <input
               type="text"
@@ -87,7 +94,7 @@ function AdminPanel() {
               onChange={(e) => setImageUrl(e.target.value)}
             />
           </div>
-          <button type="submit">Додати місце</button>
+          <button type="submit" className="submit-button">Додати місце</button>
         </form>
       </div>
     </div>

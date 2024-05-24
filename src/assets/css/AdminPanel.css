@@ -2,58 +2,63 @@
 
 .admin-panel {
   padding: 20px;
+  background-color: #f4f4f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .admin-panel h1 {
   font-size: 2rem;
   color: #2D4654;
+  margin-bottom: 20px;
 }
 
 .admin-panel p {
   font-size: 1.2rem;
   color: #757575;
-}
-
-.requests-list {
-  margin-top: 20px;
-}
-
-.requests-list h2 {
-  font-size: 1.5rem;
-  color: #2D4654;
+  margin-bottom: 30px;
 }
 
 .add-place-form {
-  margin-top: 20px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .add-place-form h2 {
   font-size: 1.5rem;
   color: #2D4654;
+  margin-bottom: 20px;
 }
 
-.add-place-form form {
-  display: flex;
-  flex-direction: column;
+.form-group {
+  margin-bottom: 15px;
 }
 
-.add-place-form form div {
-  margin-bottom: 10px;
-}
-
-.add-place-form label {
-  font-size: 1.2rem;
+.form-group label {
+  display: block;
+  font-size: 1rem;
   color: #2D4654;
+  margin-bottom: 5px;
 }
 
-.add-place-form input, .add-place-form textarea {
+.form-group input,
+.form-group textarea {
+  width: 100%;
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #ddd;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
-.add-place-form button {
+.form-group textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.submit-button {
   background-color: #B0809E;
   color: white;
   border: none;
@@ -62,8 +67,9 @@
   border-radius: 5px;
   transition: background-color 0.3s ease;
   font-size: 1rem;
+  margin-top: 20px;
 }
 
-.add-place-form button:hover {
+.submit-button:hover {
   background-color: #4E4D5C;
 }

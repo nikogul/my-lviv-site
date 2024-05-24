@@ -29,9 +29,9 @@ router.get('/:id', async (req, res) => {
 
 // Додати нове місце
 router.post('/', async (req, res) => {
-  const { name, description, tags, location, imageUrl } = req.body;
+  const { name, description, fullDescription, tags, location, imageUrl } = req.body;
   try {
-    const newPlace = new Place({ name, description, tags, location, imageUrl });
+    const newPlace = new Place({ name, description, fullDescription, tags, location, imageUrl });
     await newPlace.save();
     res.status(201).json(newPlace);
   } catch (error) {
