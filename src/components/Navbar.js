@@ -1,25 +1,27 @@
-// src/components/Navbar.js
-
-import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../assets/css/Navbar.css';
 
 function Navbar() {
-  const [isActive, setIsActive] = useState(false);
-  const searchInputRef = useRef(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleFocus = () => {
-    setIsActive(true);
-  };
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token);
+  }, [location]);
 
-  const handleBlur = (event) => {
-    if (!event.currentTarget.contains(event.relatedTarget)) {
-      setIsActive(false);
+  const handleProfileClick = () => {
+    if (isAuthenticated) {
+      navigate('/profile');
+    } else {
+      navigate('/auth');
     }
   };
 
   return (
-    <nav className={`navbar ${isActive ? 'active' : ''}`} onBlur={handleBlur}>
+    <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
           Цікавинка
@@ -29,11 +31,14 @@ function Navbar() {
             type="text"
             className="search-input"
             placeholder="Пошук..."
-            onFocus={handleFocus}
-            ref={searchInputRef}
           />
           <button className="search-button">
             <span className="search-icon">🔍</span>
+          </button>
+        </div>
+        <div className="navbar-actions">
+          <button className="auth-button" onClick={handleProfileClick}>
+            {isAuthenticated ? 'Профіль' : 'Авторизація'}
           </button>
         </div>
       </div>
