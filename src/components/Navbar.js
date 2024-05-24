@@ -20,6 +20,8 @@ function Navbar() {
     }
   };
 
+  const isProfilePage = location.pathname === '/profile';
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -36,11 +38,13 @@ function Navbar() {
             <span className="search-icon">🔍</span>
           </button>
         </div>
-        <div className="navbar-actions">
-          <button className="auth-button" onClick={handleProfileClick}>
-            {isAuthenticated ? 'Профіль' : 'Авторизація'}
-          </button>
-        </div>
+        {!isProfilePage && (
+          <div className="navbar-actions">
+            <button className="auth-button" onClick={handleProfileClick}>
+              {isAuthenticated ? 'Профіль' : 'Авторизація'}
+            </button>
+          </div>
+        )}
       </div>
     </nav>
   );

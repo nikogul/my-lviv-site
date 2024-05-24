@@ -1,44 +1,49 @@
-/* src/assets/css/Home.css */
-
 .home {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../images/home.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
   text-align: center;
 }
 
-.home-header {
-  margin-bottom: 40px;
+.home-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.home-header h1 {
+h1 {
   font-size: 3rem;
-  color: #2D4654; /* Колір заголовка */
+  margin-bottom: 20px;
 }
 
-.home-header p {
+p {
   font-size: 1.5rem;
-  color: #757575; /* Колір підзаголовка */
+  margin-bottom: 10px;
 }
 
-.intro {
-  margin: 20px 0;
-}
-
-.intro p {
-  font-size: 1.2rem;
-  color: #757575; /* Колір тексту */
-}
-
-.explore-button {
-  background-color: #B0809E; /* Колір кнопки */
+.travel-button {
+  position: absolute;
+  bottom: 20px;
+  background-color: #B0809E;
   color: white;
   border: none;
   padding: 15px 30px;
-  font-size: 1.2rem;
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-align: center;
 }
 
-.explore-button:hover {
-  background-color: #4E4D5C; /* Колір кнопки при наведенні */
+.travel-button:hover {
+  background-color: #4E4D5C;
 }

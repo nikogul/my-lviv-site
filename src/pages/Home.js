@@ -1,28 +1,37 @@
-// src/pages/Home.js
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../assets/css/Home.css';
 
 function Home() {
+  const [displayName, setDisplayName] = useState('незнайомець');
   const navigate = useNavigate();
 
-  const handleButtonClick = () => {
-    navigate('/places'); // Переход до сторінки зі списком місць
-  };
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios.get('http://localhost:5000/api/users/profile', {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(response => {
+        setDisplayName(response.data.displayName);
+      })
+      .catch(error => {
+        console.error('Failed to fetch user profile', error);
+      });
+    }
+  }, []);
 
   return (
     <div className="home">
-      <header className="home-header">
-        <h1>Цікавинка</h1>
-        <p>Досліджуйте найкращі місця у місті Лева!</p>
-      </header>
-      <section className="intro">
-        <p>Наш сайт допоможе вам знайти цікаві, корисні та видатні місця у Львові. Натисніть кнопку нижче, щоб розпочати свою подорож.</p>
-        <button className="explore-button" onClick={handleButtonClick}>
-          Переглянути місця
+      <div className="home-content">
+        <h1>Вітаю, {displayName}!</h1>
+        <p>Ласкаво просимо до сайту "Цікавинка".</p>
+        <p>Знайдіть найцікавіші та найвидатніші місця у Львові!</p>
+        <button className="travel-button" onClick={() => navigate('/places')}>
+          У подорож!
         </button>
-      </section>
+      </div>
     </div>
   );
 }
