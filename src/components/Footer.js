@@ -8,6 +8,9 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         <p>© 2024 Цікавинка. Всі права захищені.</p>
+        <p>
+          <a href="/privacy-policy">Політика конфіденційності</a> | <a href="/terms-of-service">Умови користування</a>
+        </p>
       </div>
     </footer>
   );

@@ -1,19 +1,40 @@
 /* src/assets/css/Footer.css */
 
 .footer {
-  background-color: #2D4654; /* Оновлено колір */
+  background-color: #2D4654;
   padding: 20px 0;
   text-align: center;
   color: white;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease; /* Додано плавний перехід кольору */
+  transition: background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .footer:hover {
-  background-color: #243B4A; /* Оновлено колір при наведенні */
+  background-color: #243B4A;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
+}
+
+.footer p {
+  font-size: 1.2rem;
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.footer a {
+  color: #B0809E;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #F7D6E0;
 }
