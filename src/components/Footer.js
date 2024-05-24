@@ -1,6 +1,7 @@
 // src/components/Footer.js
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/css/Footer.css';
 
 function Footer() {
@@ -9,7 +10,9 @@ function Footer() {
       <div className="footer-container">
         <p>© 2024 Цікавинка. Всі права захищені.</p>
         <p>
-          <a href="/privacy-policy">Політика конфіденційності</a> | <a href="/terms-of-service">Умови користування</a>
+          <Link to="/privacy-policy">Політика конфіденційності</Link> | 
+          <Link to="/terms-of-service">Умови користування</Link> | 
+          <Link to="/admin">Адмін панель</Link>
         </p>
       </div>
     </footer>
