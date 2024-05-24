@@ -1,3 +1,5 @@
+// src/pages/Profile.js
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -22,6 +24,8 @@ function Profile() {
           fetchMyPlaces(response.data._id);
         } catch (error) {
           console.error('Failed to fetch profile:', error);
+          localStorage.removeItem('token'); // Видалити токен, якщо профіль не знайдено
+          navigate('/auth'); // Перенаправити на сторінку авторизації
         }
       } else {
         navigate('/auth');

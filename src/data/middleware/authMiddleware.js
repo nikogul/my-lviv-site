@@ -1,17 +1,22 @@
-const jwt = require('jsonwebtoken');
+// src/data/middleware/authMiddleware.js
 
-const authMiddleware = (req, res, next) => {
-  // Отримати токен з заголовків запиту
+const jwt = require('jsonwebtoken');
+const User = require('../models/User'); // Імпортувати модель User
+
+const authMiddleware = async (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) {
     return res.status(401).json({ error: 'Необхідно авторизуватися' });
   }
 
   try {
-    // Перевірити і розшифрувати токен
     const decoded = jwt.verify(token, 'your_jwt_secret');
-    req.user = decoded; // Зберегти інформацію про користувача в запиті
-    next(); // Передати управління наступному middleware або роуту
+    const user = await User.findById(decoded.userId); // Перевірити існування користувача
+    if (!user) {
+      return res.status(401).json({ error: 'Користувач не знайдений' });
+    }
+    req.user = decoded;
+    next();
   } catch (error) {
     res.status(401).json({ error: 'Неправильний або прострочений токен' });
   }
