@@ -8,7 +8,6 @@ import '../assets/css/Profile.css';
 function Profile() {
   const [profile, setProfile] = useState(null);
   const [savedPlaces, setSavedPlaces] = useState([]);
-  const [myPlaces, setMyPlaces] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +20,6 @@ function Profile() {
           });
           setProfile(response.data);
           fetchSavedPlaces(response.data.savedPlaces);
-          fetchMyPlaces(response.data._id);
         } catch (error) {
           console.error('Failed to fetch profile:', error);
           localStorage.removeItem('token'); // Видалити токен, якщо профіль не знайдено
@@ -38,15 +36,6 @@ function Profile() {
         setSavedPlaces(response.data);
       } catch (error) {
         console.error('Failed to fetch saved places:', error);
-      }
-    };
-
-    const fetchMyPlaces = async (userId) => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/places/user/${userId}`);
-        setMyPlaces(response.data);
-      } catch (error) {
-        console.error('Failed to fetch my places:', error);
       }
     };
 
