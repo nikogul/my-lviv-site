@@ -1,20 +1,16 @@
 .navbar {
   background-color: #87BCDE;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Центрування всього вмісту навбару */
   align-items: center;
-  padding: 0 10px;
+  padding: 0 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  height: 50px;
-  overflow: hidden;
-  position: relative;
+  transition: background-color 0.3s ease;
+  height: 60px;
 }
 
-.navbar:hover,
-.navbar.active {
+.navbar:hover {
   background-color: #96BBD1;
-  height: 150px;
 }
 
 .navbar-container {
@@ -22,43 +18,16 @@
   align-items: center;
   width: 100%;
   max-width: 1200px;
-  flex-direction: column;
-  transition: all 0.3s ease;
-  justify-content: center;
-  height: 100%;
+  gap: 20px;
 }
 
 .navbar-logo {
   color: white;
-  font-size: 20px;
+  font-size: 24px;
   text-decoration: none;
   font-weight: bold;
-  text-align: center;
-  transition: all 0.3s ease;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.navbar:hover .navbar-logo,
-.navbar.active .navbar-logo {
-  animation: none;
-  position: static;
-  transform: translateY(0);
-  margin-bottom: 10px;
-  animation: bounce 0.6s ease-out forwards;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: scale(1);
-  }
-  40% {
-    transform: scale(1.2);
-  }
-  60% {
-    transform: scale(1.1);
-  }
+  transition: color 0.3s ease;
+  margin-right: auto; /* Вирівнювання логотипу ліворуч */
 }
 
 .navbar-logo:hover {
@@ -72,25 +41,16 @@
   border-radius: 20px;
   padding: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 500px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  margin-top: 10px;
-}
-
-.navbar:hover .search-container,
-.navbar.active .search-container {
-  opacity: 1;
-  transform: translateY(0);
+  width: 400px; /* Встановлення статичної ширини */
+  margin-left: auto; /* Вирівнювання поля пошуку по центру */
+  margin-right: auto; /* Вирівнювання поля пошуку по центру */
 }
 
 .search-input {
   border: none;
   outline: none;
-  padding: 5px;
-  flex: 1;
+  padding: 10px;
+  flex-grow: 1;
   font-size: 14px;
   border-radius: 20px;
 }
@@ -119,11 +79,7 @@
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-left: auto; /* Вирівнювання кнопки праворуч */
 }
 
 .auth-button {
@@ -138,7 +94,6 @@
   text-decoration: none;
   text-align: center;
 }
-
 .auth-button:hover {
   background-color: #4E4D5C;
 }
