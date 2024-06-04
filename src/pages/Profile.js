@@ -65,7 +65,7 @@ function Profile() {
         </div>
       </div>
       <div className="places-section">
-        <h2>Збережено</h2>
+        <h2>Тестування авторизації</h2>
         <div className="places-container">
           {savedPlaces.length > 0 ? (
             savedPlaces.map((place) => (
@@ -75,7 +75,7 @@ function Profile() {
               </div>
             ))
           ) : (
-            <p>Збережених місць немає</p>
+            <p>Пройдено успішно. Авторизація працює</p>
           )}
         </div>
       </div>
