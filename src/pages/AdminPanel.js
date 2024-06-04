@@ -1,17 +1,33 @@
 // File: src/pages/AdminPanel.js
 
 import React, { useState } from 'react';
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import axios from 'axios';
 import '../assets/css/AdminPanel.css';
 
 const availableTags = ['кафе', 'ресторан', 'клуб', 'видатне місце'];
+
+function LocationSelector({ onLocationChange }) {
+  const [position, setPosition] = useState(null);
+
+  useMapEvents({
+    click(event) {
+      setPosition(event.latlng);
+      onLocationChange([event.latlng.lat, event.latlng.lng]);
+    }
+  });
+
+  return position === null ? null : (
+    <Marker position={position} />
+  );
+}
 
 function AdminPanel() {
   const [name, setName] = useState('');
   const [shortDescription, setShortDescription] = useState('');
   const [fullDescription, setFullDescription] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
 
   const handleTagChange = (tag) => {
@@ -22,6 +38,10 @@ function AdminPanel() {
     }
   };
 
+  const handleLocationChange = (newLocation) => {
+    setLocation(newLocation);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -30,7 +50,7 @@ function AdminPanel() {
         description: shortDescription,
         fullDescription,
         tags: selectedTags,
-        location: location.split(',').map(coord => parseFloat(coord.trim())),
+        location,
         imageUrl,
       });
       console.log('Place added:', response.data);
@@ -39,7 +59,7 @@ function AdminPanel() {
       setShortDescription('');
       setFullDescription('');
       setSelectedTags([]);
-      setLocation('');
+      setLocation(null);
       setImageUrl('');
     } catch (error) {
       console.error('Failed to add place:', error);
@@ -95,13 +115,19 @@ function AdminPanel() {
             </div>
           </div>
           <div className="form-group">
-            <label>Координати (через кому):</label>
-            <input
-              type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              required
-            />
+            <label>Виберіть розташування на мапі:</label>
+            <MapContainer
+              center={[49.8397, 24.0297]}
+              zoom={13}
+              scrollWheelZoom={false}
+              style={{ height: '300px', width: '100%' }}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              <LocationSelector onLocationChange={handleLocationChange} />
+            </MapContainer>
           </div>
           <div className="form-group">
             <label>URL зображення:</label>

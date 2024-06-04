@@ -1,13 +1,24 @@
+// File: src/index.js
+
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App';
-import './index.css';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import './index.css'; // імпортуйте ваші глобальні стилі тут
 
-const container = document.getElementById('root');
-const root = createRoot(container);
+// Налаштування іконок маркерів
+delete L.Icon.Default.prototype._getIconUrl;
 
-root.render(
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
+
+ReactDOM.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
