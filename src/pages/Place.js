@@ -86,7 +86,7 @@ function Place() {
       </section>
       <section className="place-map">
         <h2>Розташування</h2>
-        <MapContainer center={place.location} zoom={13} scrollWheelZoom={false} style={{ height: '300px', width: '100%' }}>
+        <MapContainer center={place.location} zoom={13} scrollWheelZoom={true} style={{ height: '300px', width: '100%' }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
