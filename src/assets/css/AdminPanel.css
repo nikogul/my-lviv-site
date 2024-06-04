@@ -1,4 +1,4 @@
-/* src/assets/css/AdminPanel.css */
+/* File: src/assets/css/AdminPanel.css */
 
 .admin-panel {
   padding: 20px;
@@ -56,6 +56,21 @@
 .form-group textarea {
   resize: vertical;
   height: 100px;
+}
+
+.tags-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-checkbox {
+  font-size: 1rem;
+  color: #2D4654;
+}
+
+.tag-checkbox input {
+  margin-right: 5px;
 }
 
 .submit-button {

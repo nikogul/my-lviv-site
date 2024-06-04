@@ -1,16 +1,26 @@
-// src/pages/AdminPanel.js
+// File: src/pages/AdminPanel.js
 
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../assets/css/AdminPanel.css';
 
+const availableTags = ['кафе', 'ресторан', 'клуб', 'видатне місце'];
+
 function AdminPanel() {
   const [name, setName] = useState('');
   const [shortDescription, setShortDescription] = useState('');
   const [fullDescription, setFullDescription] = useState('');
-  const [tags, setTags] = useState('');
+  const [selectedTags, setSelectedTags] = useState([]);
   const [location, setLocation] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+
+  const handleTagChange = (tag) => {
+    if (selectedTags.includes(tag)) {
+      setSelectedTags(selectedTags.filter((t) => t !== tag));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,7 +29,7 @@ function AdminPanel() {
         name,
         description: shortDescription,
         fullDescription,
-        tags: tags.split(',').map(tag => tag.trim()),
+        tags: selectedTags,
         location: location.split(',').map(coord => parseFloat(coord.trim())),
         imageUrl,
       });
@@ -28,7 +38,7 @@ function AdminPanel() {
       setName('');
       setShortDescription('');
       setFullDescription('');
-      setTags('');
+      setSelectedTags([]);
       setLocation('');
       setImageUrl('');
     } catch (error) {
@@ -69,13 +79,20 @@ function AdminPanel() {
             />
           </div>
           <div className="form-group">
-            <label>Теги (через кому):</label>
-            <input
-              type="text"
-              value={tags}
-              onChange={(e) => setTags(e.target.value)}
-              required
-            />
+            <label>Теги:</label>
+            <div className="tags-checkboxes">
+              {availableTags.map((tag) => (
+                <label key={tag} className="tag-checkbox">
+                  <input
+                    type="checkbox"
+                    value={tag}
+                    checked={selectedTags.includes(tag)}
+                    onChange={() => handleTagChange(tag)}
+                  />
+                  {tag}
+                </label>
+              ))}
+            </div>
           </div>
           <div className="form-group">
             <label>Координати (через кому):</label>
