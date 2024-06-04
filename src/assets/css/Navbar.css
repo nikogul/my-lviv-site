@@ -1,7 +1,9 @@
+/* File: src/assets/css/Navbar.css */
+
 .navbar {
   background-color: #87BCDE;
   display: flex;
-  justify-content: center; /* Центрування всього вмісту навбару */
+  justify-content: center;
   align-items: center;
   padding: 0 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -27,7 +29,7 @@
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
-  margin-right: auto; /* Вирівнювання логотипу ліворуч */
+  margin-right: auto;
 }
 
 .navbar-logo:hover {
@@ -41,9 +43,9 @@
   border-radius: 20px;
   padding: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 400px; /* Встановлення статичної ширини */
-  margin-left: auto; /* Вирівнювання поля пошуку по центру */
-  margin-right: auto; /* Вирівнювання поля пошуку по центру */
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .search-input {
@@ -79,7 +81,7 @@
 .navbar-actions {
   display: flex;
   align-items: center;
-  margin-left: auto; /* Вирівнювання кнопки праворуч */
+  margin-left: auto;
 }
 
 .auth-button {
@@ -94,6 +96,30 @@
   text-decoration: none;
   text-align: center;
 }
+
 .auth-button:hover {
   background-color: #4E4D5C;
+}
+
+.search-results {
+  position: absolute;
+  top: 60px;
+  background: white;
+  width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.search-result-item {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.search-result-item:hover {
+  background-color: #f0f0f0;
 }

@@ -4,6 +4,22 @@ const express = require('express');
 const Place = require('../models/Place');
 const router = express.Router();
 
+router.get('/search', async (req, res) => {
+  const query = req.query.q;
+  try {
+    const places = await Place.find({
+      $or: [
+        { name: new RegExp(query, 'i') },
+        { description: new RegExp(query, 'i') },
+        { fullDescription: new RegExp(query, 'i') },
+      ]
+    }).limit(3); // Обмеження до 3 результатів
+    res.status(200).json(places);
+  } catch (error) {
+    res.status(400).json({ error: 'Failed to fetch search results' });
+  }
+});
+
 // Отримати всі місця
 router.get('/', async (req, res) => {
   try {
