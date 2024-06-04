@@ -1,4 +1,5 @@
-// src/pages/Place.js
+// File: src/pages/Place.js
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -38,7 +39,6 @@ function Place() {
 
   const handleReviewSubmit = async (event) => {
     event.preventDefault();
-    // Обробка додавання нового відгуку
     try {
       const response = await axios.post('http://localhost:5000/api/reviews', {
         placeId: place._id,
